@@ -43,3 +43,6 @@ npm install react-icons --save
 # DARK-MODE by Tailwindcss:
 tailwind.config.js
     darkMode: 'class',
+
+# Axios
+npm i axios

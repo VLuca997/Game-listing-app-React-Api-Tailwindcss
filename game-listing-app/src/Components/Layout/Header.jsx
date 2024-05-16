@@ -9,12 +9,11 @@ export default function Header() {
     const {theme,setTheme} = useContext(ThemeContext)
 
     useEffect(()=> {
-        console.log("theme" + theme)
     },[])
   return (
     <div className='mx-5 flex items-center'>
 
-        <div className="dark:bg-slate-800">
+        <div className="">
             Logo
         </div>
 
@@ -23,13 +22,13 @@ export default function Header() {
             <input type="text" placeholder='Search Games...' className='bg-transparent outline-none ' />
         </div>
         <div>
-            {theme == 'ligth'  ? 
+            {theme == 'light'  ? 
                 <FaMoon className='text-[35px] bg-slate-200 text-black rounded-full p-1 cursor-pointer'
-                        onClick={()=>setTheme('dark')}
+                        onClick={()=>{setTheme('dark');localStorage.setItem('theme','dark')}}
                 /> 
                     :
                 <IoSunnyOutline className='text-[35px] bg-slate-200 text-black rounded-full p-1 cursor-pointer'
-                                onClick={()=>setTheme('ligth')}
+                                onClick={()=>{setTheme('light');localStorage.setItem('theme','light')}}
                 />
             }
         
