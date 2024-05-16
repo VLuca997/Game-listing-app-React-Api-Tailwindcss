@@ -1,10 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { ThemeContext } from '../../Context/ThemeContext';
 import { HiBookmark } from "react-icons/hi";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { FaMoon } from "react-icons/fa";
 import { IoSunnyOutline } from "react-icons/io5";
 export default function Header() {
     const [toggle, setToggle] = useState(false);
+    const {theme,setTheme} = useContext(ThemeContext)
+
+    useEffect(()=> {
+        console.log("theme" + theme)
+    },[])
   return (
     <div className='mx-5 flex items-center'>
 
@@ -17,13 +23,13 @@ export default function Header() {
             <input type="text" placeholder='Search Games...' className='bg-transparent outline-none ' />
         </div>
         <div>
-            {toggle ? 
+            {theme == 'ligth'  ? 
                 <FaMoon className='text-[35px] bg-slate-200 text-black rounded-full p-1 cursor-pointer'
-                        onClick={()=>setToggle(!toggle)}
+                        onClick={()=>setTheme('dark')}
                 /> 
                     :
                 <IoSunnyOutline className='text-[35px] bg-slate-200 text-black rounded-full p-1 cursor-pointer'
-                                onClick={()=>setToggle(!toggle)}
+                                onClick={()=>setTheme('ligth')}
                 />
             }
         

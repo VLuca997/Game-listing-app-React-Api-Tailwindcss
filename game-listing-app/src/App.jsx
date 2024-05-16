@@ -1,16 +1,24 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import Header from "./Components/Layout/Header.jsx"
-
+import Home from './Pages/Home/Home.jsx'
+//Theme Context
+import { ThemeContext } from "./Context/ThemeContext.jsx";
 function App() {
 
-    //LIGHTMODE
+    //Setting THEME
     const [theme,setTheme] = useState('light');
+
+    //
     return (
         <>
-            <div className={`${theme} ${theme == 'dark' ? 'bg-[#121212]' : null}`}>
+        <ThemeContext.Provider value={{theme,setTheme}}>
+            <div className={`${theme} ${theme == 'dark' ? 'bg-[#121212]' : null} h-[100vh]`}>
                 <Header />
+                <Home />
                 <div className="">Hello workd</div>
             </div>
+
+        </ThemeContext.Provider>
         </>
     )
 }
