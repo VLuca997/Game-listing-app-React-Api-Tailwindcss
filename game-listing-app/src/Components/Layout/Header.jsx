@@ -4,6 +4,7 @@ import { HiBookmark } from "react-icons/hi";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { FaMoon } from "react-icons/fa";
 import { IoSunnyOutline } from "react-icons/io5";
+import { DiGithubBadge } from "react-icons/di";
 export default function Header() {
     const [toggle, setToggle] = useState(false);
     const {theme,setTheme} = useContext(ThemeContext)
@@ -12,10 +13,11 @@ export default function Header() {
     },[])
   return (
     <div className='mx-5 flex items-center'>
-
-        <div className="">
-            Logo
-        </div>
+        <a href="https://github.com/VLuca997?tab=repositories">
+            <div className="dark:text-white ">
+                <DiGithubBadge size="50px" />
+            </div>
+        </a>
 
         <div className="flex bg-slate-200  p-2 w-full items-center mx-5 my-3 rounded-full">
             <HiMagnifyingGlass />

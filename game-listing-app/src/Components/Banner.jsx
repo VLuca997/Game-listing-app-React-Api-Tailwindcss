@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 export default function Banner({ gameBanner }) {
     useEffect(() => {
-        console.log("banner ", gameBanner);
+        console.log("Banner Jumbotron: ", gameBanner);
     }, [gameBanner]);
 
 

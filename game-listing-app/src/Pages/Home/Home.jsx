@@ -8,10 +8,12 @@ import GamesByGenresId from '../../Components/GamesByGenresId.jsx'; // GamesByGe
 export default function Home() {
     const [allGameList, setAllGameList] = useState([]);
     const [gameListByGenres,setGameListByGenres] = useState([]) // GamesByGenresId.jsx
+    const [selectedGenresName,setSelectedGenresName] = useState('Action')
 
     useEffect(() => {
         getAllGamesList();
-        getGameListByGenresId()
+        getGameListByGenresId();
+        
     }, []);
 
     const getAllGamesList = async () => {
@@ -20,27 +22,30 @@ export default function Home() {
             setAllGameList(response.data.results);
             setGameListByGenres(response.data.results);// GamesByGenresId.jsx
         } catch (error) {
-            console.error('Error fetching all games list:', error);
+            console.error('Errore nel caricamento della Lista Giochi: ', error);
         }
     };
 
     const getGameListByGenresId = (id) =>{
-        GamesApi.getGameListByGenreId(4).then((response) => {
-            console.log('porcodedddiiiooooo',response.data.results)
+        console.log("Id Genere: " , id)
+        GamesApi.getGameListByGenreId(id).then((response) => {
+            console.log('Lista giochi per Genere: ',response.data.results)
+            setGameListByGenres(response.data.results)
         })
     }
 
     return (
-        <div className="grid grid-cols-4">
+        <div className="grid grid-cols-4 p-5">
             <div className='hidden md:block'>
-                <GenreList />
+                <GenreList genreId={(genreId)=> getGameListByGenresId(genreId) } selectedGenresName={(name)=>setSelectedGenresName(name)}/>
             </div>
             <div className='col-span-4 md:col-span-3'>
                 {allGameList.length > 0 && gameListByGenres.length > 0 ? 
-                    <div className='p-5'>
+                    <div className='p-10'>
                         <Banner gameBanner={allGameList[0]} />
                         <TreadingGame gameList={allGameList} />
-                        <GamesByGenresId gameList={gameListByGenres}/>
+                        <GamesByGenresId gameList={gameListByGenres}
+                        selectedGenresName={selectedGenresName}/>
                     </div>
                  : null}
             </div>

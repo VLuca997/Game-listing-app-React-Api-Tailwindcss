@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 export default function TreadingGame({ gameList }) {
     useEffect(() => {
-        console.log("game List ", gameList);
+        console.log("GameList Giochi TOP: ", gameList);
     }, [gameList]);
 
     return (
